@@ -6,10 +6,11 @@ Nottingham City Transport Bus Stop Departures mini API with Cloudflare Workers
 
 https://github.com/coding-to-music/cloudflare-nctx-bus-stop-api
 
-From https://simonprickett.dev/bus-stop-api-with-cloudflare-workers/
+From / By https://simonprickett.dev/bus-stop-api-with-cloudflare-workers/
 
 https://github.com/simonprickett/nctx-stop-api
 
+https://nctx.crudworks.workers.dev/?stopId=3390FO07&maxResults=8
 
 ## Environment Values
 
@@ -30,7 +31,6 @@ git branch -M main
 git remote add origin git@github.com:coding-to-music/cloudflare-nctx-bus-stop-api.git
 git push -u origin main
 ```
-
 
 # Nottingham City Transport Bus Departures API
 
@@ -554,7 +554,7 @@ const NUMBER_CHARS_LOOKUP = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 // Filter by route if needed... route 69 includes 69A, 69X etc but not 169 or 690.
 const routeToFilter = url.searchParams.get('routeNumber')
 if (routeToFilter) {
-  results.departures = results.departures.filter(departure => {
+  results.departures = results.departures.filter((departure) => {
     const lastChar = departure.routeNumber.substring(
       departure.routeNumber.length - 1,
     )
@@ -586,7 +586,7 @@ if (url.searchParams.get('fields')) {
   const fieldsToReturn = url.searchParams.get('fields').split(',')
 
   if (fieldsToReturn.length > 0) {
-    results.departures = results.departures.map(departure => {
+    results.departures = results.departures.map((departure) => {
       const newDeparture = {}
       for (const fieldName of fieldsToReturn) {
         newDeparture[fieldName] = departure[fieldName]
