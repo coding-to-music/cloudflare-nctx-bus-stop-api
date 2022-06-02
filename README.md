@@ -70,6 +70,18 @@ $ export CF_ACCOUNT_ID=<your account id>
 
 Follow the [Wrangler instructions](https://developers.cloudflare.com/workers/cli-wrangler/authentication/) to authenticate Wrangler with your Cloudflare account.
 
+Install Wrangler
+
+```java
+npm install
+
+npm install -g wrangler
+
+# authenticate wrangler
+
+wrangler login
+```
+
 Now, you're ready to start a local copy of the worker:
 
 ```bash
