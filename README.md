@@ -1,3 +1,37 @@
+# cloudflare-nctx-bus-stop-api
+
+Nottingham City Transport Bus Stop Departures mini API with Cloudflare Workers
+
+# 🚀 Javascript full-stack 🚀
+
+https://github.com/coding-to-music/cloudflare-nctx-bus-stop-api
+
+From https://simonprickett.dev/bus-stop-api-with-cloudflare-workers/
+
+https://github.com/simonprickett/nctx-stop-api
+
+
+## Environment Values
+
+```java
+# Need to run this export to run the terraform apply
+
+export CLOUDFLARE_API_TOKEN=from dashboard
+```
+
+## GitHub
+
+```java
+git init
+git add .
+git remote remove origin
+git commit -m "first commit"
+git branch -M main
+git remote add origin git@github.com:coding-to-music/cloudflare-nctx-bus-stop-api.git
+git push -u origin main
+```
+
+
 # Nottingham City Transport Bus Departures API
 
 ![Nottingham City Transport Bus at Forest Recreation Ground](bus_at_forest_rec.jpg)
