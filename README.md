@@ -6,6 +6,8 @@ Nottingham City Transport Bus Stop Departures mini API with Cloudflare Workers
 
 https://github.com/coding-to-music/cloudflare-nctx-bus-stop-api
 
+https://cloudflare-nctx-bus-stop-api.coding-to-music.workers.dev/?stopId=3390FO07
+
 From / By https://simonprickett.dev/bus-stop-api-with-cloudflare-workers/
 
 https://github.com/simonprickett/nctx-stop-api
