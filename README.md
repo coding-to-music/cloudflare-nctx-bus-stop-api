@@ -32,6 +32,96 @@ git remote add origin git@github.com:coding-to-music/cloudflare-nctx-bus-stop-ap
 git push -u origin main
 ```
 
+# Errors and issues
+
+wrangler2 authentication error using wrangler 0.0.0-08e3a49 (beta) and token auth
+
+I remote to a DigitalOcean droplet and develop there, not on my Chromebook. The wrangler version 1 cli authentication works via export CLOUDFLARE_API_TOKEN=
+
+However wrangler2 cli this token-based authentication does not work, there is a new auth system using browser-only: https://blog.cloudflare.com/wrangler-oauth/
+
+There are many issues mentioning this:
+
+https://github.com/cloudflare/wrangler2/issues/862
+
+https://github.com/cloudflare/wrangler2/issues/971
+
+https://github.com/cloudflare/wrangler2/issues/978
+
+https://github.com/cloudflare/wrangler2/issues/884
+
+With overall tracking on this ticket:
+
+https://github.com/cloudflare/wrangler2/issues/861
+
+One issue mentioned a possible fix via
+
+```java
+npm install -g wrangler@beta
+
+wrangler login
+```
+
+I was then able to use the browser based authentication.
+
+However, when I ran this:
+
+```java
+wrangler dev index.js
+```
+
+Output
+
+```java
+✘ [ERROR] No account id found, quitting...
+```
+
+I exported
+
+```java
+export CLOUDFLARE_API_TOKEN=********************
+```
+
+But that did not change the error message
+
+I then exported
+
+```java
+export CLOUDFLARE_ACCOUNT_ID=********************
+```
+
+And that initially looked good, however you can see the authentication errors below
+
+Output
+
+```java
+ ⛅️ wrangler 0.0.0-08e3a49
+---------------------------
+⬣ Listening at http://localhost:8787
+✘ [ERROR] Error on remote worker: ParseError: A request to the Cloudflare API (/accounts/********************/workers/subdomain/edge-preview) failed.
+
+      at throwFetchError
+  (/home/tmc/.nvm/versions/node/v16.14.2/lib/node_modules/wrangler/wrangler-dist/cli.js:118061:17)
+      at fetchResult
+  (/home/tmc/.nvm/versions/node/v16.14.2/lib/node_modules/wrangler/wrangler-dist/cli.js:118034:5)
+      at processTicksAndRejections (node:internal/process/task_queues:96:5)
+      at async sessionToken
+  (/home/tmc/.nvm/versions/node/v16.14.2/lib/node_modules/wrangler/wrangler-dist/cli.js:120660:28)
+      at async createPreviewToken
+  (/home/tmc/.nvm/versions/node/v16.14.2/lib/node_modules/wrangler/wrangler-dist/cli.js:120678:53)
+      at async createWorkerPreview
+  (/home/tmc/.nvm/versions/node/v16.14.2/lib/node_modules/wrangler/wrangler-dist/cli.js:120700:17)
+      at async start
+  (/home/tmc/.nvm/versions/node/v16.14.2/lib/node_modules/wrangler/wrangler-dist/cli.js:121167:16) {
+    text: 'A request to the Cloudflare API
+  (/accounts/********************/workers/subdomain/edge-preview) failed.',
+    notes: [ { text: 'Authentication error [code: 10000]' } ],
+    location: undefined,
+    kind: 'error',
+    code: 10000
+  }
+```
+
 # Nottingham City Transport Bus Departures API
 
 ![Nottingham City Transport Bus at Forest Recreation Ground](bus_at_forest_rec.jpg)
@@ -54,8 +144,8 @@ To run this locally, you'll need:
 First, get the code:
 
 ```bash
-$ git clone https://github.com/simonprickett/nctx-stop-api.git
-$ cd nctx-stop-api
+git clone https://github.com/simonprickett/nctx-stop-api.git
+cd nctx-stop-api
 ```
 
 Next, you'll need to get your Cloudflare account ID... which is a numeric value that can be found on your account dashboard page when you login to Cloudflare:
@@ -65,7 +155,7 @@ Next, you'll need to get your Cloudflare account ID... which is a numeric value 
 Set the environment variable `CF_ACCOUNT_ID` to your account ID like so:
 
 ```bash
-$ export CF_ACCOUNT_ID=<your account id>
+export CF_ACCOUNT_ID=<your account id>
 ```
 
 Follow the [Wrangler instructions](https://developers.cloudflare.com/workers/cli-wrangler/authentication/) to authenticate Wrangler with your Cloudflare account.
@@ -77,6 +167,10 @@ npm install
 
 npm install -g wrangler
 
+# I needed to use this beta version:
+
+npm install -g wrangler@beta
+
 # authenticate wrangler
 
 wrangler login
@@ -85,7 +179,7 @@ wrangler login
 Now, you're ready to start a local copy of the worker:
 
 ```bash
-$ wrangler dev
+wrangler dev
 💁  watching "./"
 👂  Listening on http://127.0.0.1:8787
 ```
@@ -95,7 +189,7 @@ $ wrangler dev
 When you're ready to publish the worker to the world and give it a public URL that's part of your Cloudflare account, use Wrangler:
 
 ```bash
-$ wrangler publish
+wrangler publish
 ✨  Basic JavaScript project found. Skipping unnecessary build!
 ✨  Successfully published your script to
  https://nctx.<your Cloudflare workers domain>.workers.dev
