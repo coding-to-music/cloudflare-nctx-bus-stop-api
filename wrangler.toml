@@ -1,4 +1,4 @@
-name = "nctx"
+name = "cloudflare-nctx-bus-stop-api"
 type = "javascript"
 
 workers_dev = true

@@ -122,6 +122,24 @@ Output
   }
 ```
 
+# Revert to wrangler 1 of the CLI
+
+npm remove wrangler
+
+npm uninstall wrangler
+
+# npm install -g wrangler@1.19.12
+
+wrangler 1.19.12
+
+```java
+npm i @cloudflare/wrangler -g
+```
+
+```java
+wrangler dev index.js
+```
+
 # Nottingham City Transport Bus Departures API
 
 ![Nottingham City Transport Bus at Forest Recreation Ground](bus_at_forest_rec.jpg)
