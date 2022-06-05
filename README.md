@@ -126,9 +126,15 @@ Output
 
 # Revert to wrangler 1 of the CLI
 
+https://github.com/cloudflare/wrangler2/issues/1176
+
+```java
 npm remove wrangler
 
-npm uninstall wrangler
+npm remove wrangler@beta
+
+npm remove @cloudflare/wrangler
+```
 
 # npm install -g wrangler@1.19.12
 
@@ -138,8 +144,20 @@ wrangler 1.19.12
 npm i @cloudflare/wrangler -g
 ```
 
+# Remove wrangler version 1.19.12
+
+https://www.npmjs.com/package/@cloudflare/wrangler
+
 ```java
-wrangler dev index.js
+npm remove @cloudflare/wrangler -g
+```
+
+https://www.npmjs.com/package/wrangler
+
+# Install wrangler version 2
+
+```java
+npm install wrangler --save-dev
 ```
 
 # Nottingham City Transport Bus Departures API
